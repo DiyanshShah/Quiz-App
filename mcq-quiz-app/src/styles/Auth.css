@@ -1,0 +1,282 @@
+/* Import root variables from App.css */
+:root {
+  --primary: #64B5F6;
+  --primary-dark: #2196F3;
+  --secondary: #B0BEC5;
+  --accent: #FFC107;
+  --dark-gradient: linear-gradient(135deg, #263238 0%, #37474F 100%);
+  --dark-gradient-accent: linear-gradient(135deg, #37474F 0%, #455A64 100%);
+  --text-primary: #ECEFF1;
+  --text-secondary: #B0BEC5;
+  --success: #4CAF50;
+  --error: #F44336;
+  --background: #263238;
+  --card-bg: #37474F;
+  --surface: #455A64;
+  --input-bg: #455A64;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 1rem auto;
+  position: relative;
+}
+
+.auth-container h2 {
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 3px rgba(255, 112, 67, 0.1);
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--surface);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(100, 181, 246, 0.25);
+}
+
+.form-group input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.error-message {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: var(--error);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  border-left: 3px solid var(--error);
+  margin: 0.5rem 0;
+}
+
+.auth-button {
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.auth-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+}
+
+.auth-button:disabled {
+  background-color: var(--secondary);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.auth-switch {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.auth-switch button {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+  margin-left: 0.5rem;
+}
+
+.auth-switch button:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.auth-switch button:disabled {
+  color: var(--text-secondary);
+  cursor: not-allowed;
+  text-decoration: none;
+}
+
+/* Signup form progress dots */
+.signup-progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+  background-color: var(--primary);
+  transform: scale(1.3);
+}
+
+.progress-dot.completed {
+  background-color: var(--success);
+}
+
+/* Form step navigation */
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav-button {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  border: none;
+}
+
+.back-button {
+  background-color: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--secondary);
+}
+
+.next-button, .submit-button {
+  background-color: var(--primary);
+  color: white;
+}
+
+.back-button:hover {
+  background-color: var(--card-bg);
+}
+
+.next-button:hover, .submit-button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(33, 150, 243, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .form-navigation {
+    flex-direction: column;
+  }
+  
+  .nav-button {
+    width: 100%;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.auth-container {
+  animation: slideIn 0.5s ease-out;
+}
+
+@media (max-width: 480px) {
+  .auth-container {
+    padding: 1.5rem;
+  }
+}
+
+.form-step {
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.form-step.active {
+  display: block;
+  animation: slideIn 0.5s forwards;
+}
+
+.form-step.completed {
+  display: none;
+}
+
+.form-content {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--warm-gradient);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.auth-page h1 {
+  position: relative;
+  margin-bottom: 2rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
