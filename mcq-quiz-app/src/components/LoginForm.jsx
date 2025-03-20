@@ -45,6 +45,7 @@ const LoginForm = ({ onSwitch, onLoginSuccess }) => {
           localStorage.setItem('authToken', data.token);
         }
         
+        // Call the onLoginSuccess callback with user data
         onLoginSuccess({
           username: data.username,
           email: data.email
@@ -98,7 +99,13 @@ const LoginForm = ({ onSwitch, onLoginSuccess }) => {
 
       <div className="auth-switch">
         Don't have an account?
-        <button onClick={onSwitch} disabled={loading}>Sign Up</button>
+        <button 
+          type="button" 
+          onClick={onSwitch} 
+          disabled={loading}
+        >
+          Sign Up
+        </button>
       </div>
     </div>
   );

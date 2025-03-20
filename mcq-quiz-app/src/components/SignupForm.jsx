@@ -12,6 +12,7 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
   });
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const formFields = [
     { name: 'username', label: 'Username', type: 'text' },
@@ -75,6 +76,7 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateCurrentField()) {
+      setLoading(true);
       try {
         const response = await fetch('http://localhost:5000/api/signup', {
           method: 'POST',
@@ -104,6 +106,8 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
       } catch (err) {
         console.error('Signup error:', err);
         setError('Unable to connect to the server. Please check if the server is running.');
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -142,6 +146,7 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
                 onChange={handleInputChange}
                 placeholder={`Enter your ${field.label.toLowerCase()}`}
                 autoComplete={field.type === 'password' ? 'new-password' : 'off'}
+                disabled={loading}
               />
             </div>
           </div>
@@ -155,6 +160,7 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
               type="button" 
               onClick={handleBack}
               className="nav-button back-button"
+              disabled={loading}
             >
               Back
             </button>
@@ -165,6 +171,7 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
               type="button" 
               onClick={handleNext}
               className="nav-button next-button"
+              disabled={loading}
             >
               Next
             </button>
@@ -172,8 +179,9 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
             <button 
               type="submit"
               className="nav-button submit-button"
+              disabled={loading}
             >
-              Sign Up
+              {loading ? 'Signing Up...' : 'Sign Up'}
             </button>
           )}
         </div>
@@ -181,7 +189,13 @@ const SignupForm = ({ onSwitch, onSignupSuccess }) => {
 
       <div className="auth-switch">
         Already have an account?
-        <button type="button" onClick={onSwitch}>Log In</button>
+        <button 
+          type="button" 
+          onClick={onSwitch}
+          disabled={loading}
+        >
+          Log In
+        </button>
       </div>
     </div>
   );

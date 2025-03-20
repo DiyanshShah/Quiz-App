@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 import '../styles/Dashboard.css';
 
-const Dashboard = ({ user }) => {
+const Dashboard = () => {
+  const { user } = useAuth();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -25,7 +27,9 @@ const Dashboard = ({ user }) => {
   }, []);
 
   useEffect(() => {
-    fetchUserStats();
+    if (user) {
+      fetchUserStats();
+    }
   }, [user]);
 
   // Fallback data in case the API fails
@@ -55,6 +59,8 @@ const Dashboard = ({ user }) => {
   };
 
   const fetchUserStats = async () => {
+    if (!user) return;
+    
     try {
       setLoading(true);
       console.log(`Fetching stats for user: ${user.username}`);
@@ -78,12 +84,18 @@ const Dashboard = ({ user }) => {
             setError('');
             setLoading(false);
             return;
+          } else {
+            console.error('Auth request failed with status:', authResponse.status);
+            const errorText = await authResponse.text();
+            console.error('Auth error response:', errorText);
           }
           // If auth fails, we'll fall through to the non-authenticated endpoint
         } catch (err) {
           console.error('Error with authenticated request:', err);
           // Continue to try the non-authenticated endpoint
         }
+      } else {
+        console.log('No auth token found in localStorage');
       }
       
       // Fallback to the non-authenticated endpoint

@@ -21,6 +21,8 @@
   --background: #263238;
   --card-bg: #37474F;
   --surface: #455A64;
+  --border: rgba(255, 255, 255, 0.1);
+  --text: #ECEFF1;
 }
 
 /* Add these additional gradients for variety */
@@ -760,4 +762,10 @@ h1, .topic-selection h2 {
   align-items: flex-start;
   overflow-x: hidden;
   padding: 0;
+}
+
+/* Add proper spacing for content area */
+.App {
+  padding-top: 80px; /* This should be larger than navbar height */
+  min-height: 100vh;
 }
